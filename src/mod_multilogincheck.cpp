@@ -52,29 +52,7 @@ public:
 	}
 };
 
-class multi_login_check_world : public WorldScript
-{
-public:
-	multi_login_check_world() : WorldScript("multi_login_check_world") { }
-
-	void OnBeforeConfigLoad(bool reload) override
-	{
-		if (!reload) {
-			std::string conf_path = _CONF_DIR;
-			std::string cfg_file = conf_path + "/mod_multilogin.conf";
-#ifdef WIN32
-			cfg_file = "mod_multilogin.conf";
-#endif
-			std::string cfg_def_file = cfg_file + ".dist";
-			sConfigMgr->LoadMore(cfg_def_file.c_str());
-
-			sConfigMgr->LoadMore(cfg_file.c_str());
-		}
-	}
-};
-
 void AddMultiLoginCheckScripts()
 {
-    new multi_login_check_world;
     new multi_login_check;
 }
